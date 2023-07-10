@@ -1,0 +1,184 @@
+PL/Sql 
+//sum n avg
+declare 
+a number;=&a; 
+b number:-&b; 
+C number:-&c: 
+sm number: 
+av number; 
+begin 
+sm:=a+b+c; 
+av:=sm/3 : 
+dbms_output . put_line('Sum = '| | sm); dbms_output . put_line("'Ave rage = ||av);
+end;
+..................................
+//simple Interest
+declare 
+p number(9,2); 
+r number(9,2) ; 
+t number(9,2) ; 
+si number (9,2) ; 
+begin 
+p:=&p; 
+r:=&r; 
+t:=&t; 
+si:=(p*r*t) /100; 
+dbms_output. put_line('simple Interest = '||si); 
+end;
+..................................
+//factorial
+declare 
+n number; 
+i number; 
+f number:=l; 
+begin 
+n:=&n: 
+for i in 1. .n 
+loop 
+f:=f*i; 
+end loop; 
+dbms_output . put_line (n||'!= '||E);
+end;
+.................................................
+//Reverse a num
+declare 
+N number: 
+S NUMBER := 0; 
+R NUMBER; 
+K number; 
+begin 
+N := &N; 
+K:= N; 
+l0op 
+exit WHEN N = 0: 
+S := S * 10: 
+R := MOD (N, 10); 
+S := S + R; 
+N := TRUNC (N/10): 
+end loop: 
+dbms_output . put_line('THE REVERSED DIGITS OF ||KI|' = '|S); 
+end;
+....................
+//greatest of 3
+declare 
+a number := &a; 
+b number := &b; 
+C number := &c: 
+begin 
+if a>b and a>c then 
+dbms_output. put_line (al |' is greatest. '); 
+elsif b>a and b>c then 
+dbms_output. put_line (b||' is greatest. '); 
+else dbms_output . put_line (c||' is greatest. '); 
+end if; 
+end: 
+...........................
+//CASE SELECTOR
+DECLARE 
+grade char(1) := 'A, 
+BEGIN 
+CASE grade 
+when 'A' then dbms _output.put line(Excellent'); 
+when 'B' then dbms_output. put_line(Very good ); 
+when 'C' then dbms_output.put_line('Good'); 
+when 'D' then dbms_output. put_line(Average'); 
+when 'F then dbms_output.put_line(Passed with Grace'); 
+else dbms_output.put_line(Failed'); 
+END CASE; 
+END;
+/
+.................................
+//Nested loop
+DECLARE 
+i number3): 
+j number(3): 
+BEGIN 
+i:=2: 
+LOOP 
+j:=2: 
+LOOP 
+exit WHEN ((mod(i,j) = 0) or (j=i)); 
+j :=j +1: 
+END LOOP;
+IF (j=i) THEN 
+dbms_output.put _line(i || ' is prime'); 
+END IF: 
+i:=i+l: 
+exit WHEN i = 50:
+END LOOP;
+END;
+..................................
+//bef inserting trigger
+set serveroutput on;
+SQL> create or replace
+  2  trigger person_before_insert
+  3  before
+  4  insert
+  5  on person
+  6  for each row
+  7  begin
+  8  dbms_output.put_line('before insert of'||:new.name);
+  9  end;
+ 10  /
+......................................
+//Updating trigger
+SQL> set serveroutput on;
+SQL> create or replace
+  2  trigger person_update_before
+  3  before
+  4  update
+  5  on person
+  6  for each row
+  7  begin
+  8  dbms_output.put_line('before update of'||:new.name);
+  9  end;
+ 10  /
+.....................
+//trigger before/after update on employee table for each row/statement
+DECLARE   
+   total_rows number(2);  
+BEGIN  
+   UPDATE  customers  
+   SET salary = salary + 5000;  
+   IF sql%notfound THEN  
+      dbms_output.put_line('no customers updated');  
+   ELSIF sql%found THEN  
+      total_rows := sql%rowcount;  
+      dbms_output.put_line( total_rows || ' customers updated ');  
+   END IF;   
+END;  
+/
+......................................
+// trigger for each row before and after delete
+SQL> create or replace
+  2  trigger person_delete_before
+  3  before
+  4  delete
+  5  on person
+  6  for each row
+  7  begin
+  8  dbms_output.put_line('before delete of'||:new.name);
+  9  end;
+ 10  /
+Trigger created.
+SQL> delete from person where name='joe';
+before delete of
+.............................
+//joins
+//equijoin
+select emp_no,job,dname,location from employee e,department d where e.deptno=d.deptno;
+.................
+//left outer
+select emp_no,job,dname,location from employee e left outer join department d on(e.deptno=d.deptno);
+.......................
+//right outer
+select emp_no,job,dname,location from employee e right outer join department d on(e.deptno=d.deptno);
+.................
+//natural join
+select emp_no,job,dname,location from employee natural join department;
+.................
+//cross join
+select emp_no,job,dname,location from employee cross join department;
+...................
+//full outer
+select emp_no,job,dname,location from employee e full outer join department d on(e.deptno=d.deptno);
