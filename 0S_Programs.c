@@ -540,6 +540,7 @@ getch();
 //segmentation
 #include<stdio.h>
 #include<conio.h>
+#include<stdlib.h>
 struct list
 {
 int seg;
@@ -551,7 +552,7 @@ void insert(struct list *q,int base,int limit,int seg)
 {
 if(p==NULL)
 {
-p=malloc(sizeof(Struct list));
+p=malloc(sizeof(struct list));
 p->limit=limit;
 p->base=base;
 p->seg=seg;
@@ -562,9 +563,9 @@ else
 while(q->next!=NULL)
 {
 q=q->next;
-Printf("yes")
+printf("yes");
 }
-q->next=malloc(sizeof(Struct list));
+q->next=malloc(sizeof(struct list));
 q->next ->limit=limit;
 q->next ->base=base;
 q->next ->seg=seg;
@@ -584,7 +585,7 @@ q=q->next;
 }
 return q->base;
 }
-main() {
+int main() {
 p=NULL;
 int seg,offset,limit,base,c,s,physical;
 printf("Enter segment table\n");
@@ -598,8 +599,8 @@ printf("Enter base value:");
 scanf("%d",&base);
 printf("Enter value for limit:");
 scanf("%d",&limit);
-insert(p,base,lmit,seg); }}
-while(seg!=-1)
+insert(p,base,limit,seg); }}
+while(seg!=-1);
 printf("Enter offset:");
 scanf("%d",&offset);
 printf("Enter bsegmentation number:");
@@ -614,4 +615,3 @@ else {
 printf("error"); 
 }
 }
-
