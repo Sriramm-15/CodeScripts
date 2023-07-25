@@ -327,32 +327,32 @@ int main()
    bufsize = 10;
    while(choice !=3)
   {
-   printf(“\n1. Produce \t 2. Consume \t3. Exit”);
-   printf(“\nEnter your choice: ”);
-   scanf(“%d”, &choice);
+   printf("\n1. Produce \t 2. Consume \t3. Exit");
+   printf("\nEnter your choice: ");
+   scanf("%d", &choice);
    switch(choice)
   {
     case 1: 
-			if((in+1)%bufsize==out)
-      printf(“\nBuffer is Full”);
+      if((in+1)%bufsize==out)
+      printf("\nBuffer is Full");
       else
     {
-     printf(“\nEnter the value: “);
-     scanf(“%d”, &produce);
+     printf("\nEnter the value: ");
+     scanf("%d", &produce);
      buffer[in] = produce;
      in = (in+1)%bufsize;
       }
      break;
      case 2: 
-			if(in == out)
-      printf(“\nBuffer is Empty”);
-      else
+        if(in == out)
+        printf("\nBuffer is Empty");
+        else
       {
         consume = buffer[out];
-        printf(“\nThe consumed value is %d”, consume);
+        printf("\nThe consumed value is %d", consume);
         out = (out+1)%bufsize;
       }
-				break;
+	break;
          }  
       } 
 }
@@ -384,7 +384,8 @@ main()
 }
 ............................................................
 //fifo
-i) Writer Program
+	
+//i) Writer Program
 
 #include <stdio.h>
 #include <string.h>
@@ -412,7 +413,8 @@ int main()
     } 
     return 0; 
 }
-ii Reader Program
+
+//ii Reader Program
 #include <stdio.h>
 #include <string.h>
 #include <fcntl.h>
@@ -438,11 +440,7 @@ int main()
     } 
     return 0; 
 }
-Note: Execute the two programs simultaneously
-OUTPUT:
-User1 :cmrtc
-	hyderabad
-...........................................
+
 //message queues
 #include <stdio.h>
 #include <sys/ipc.h>
@@ -463,16 +461,9 @@ int main()
     msgctl(msgid, IPC_RMID, NULL); 
     return 0; 
 }
-Note: Execute the two programs simultaneously
-OUTPUT:
-Writer side process:
-	Write data	: cmrtchyderabad
-	Data send is	: cmrtchyderabad
-Reader side Process:
-	Data received is	: cmrtchyderabad
-...................................................................
-d. IPC through shared memory
-i. SHARED MEMORY FOR WRITER PROCESS
+
+//d. IPC through shared memory
+//i. SHARED MEMORY FOR WRITER PROCESS
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <stdio.h>
@@ -487,7 +478,8 @@ int main()
     shmdt(str); 
     return 0; 
 }
-ii. SHARED MEMORY FOR READER PROCESS
+
+//ii. SHARED MEMORY FOR READER PROCESS
 
 #include <sys/ipc.h>
 #include <sys/shm.h>
@@ -503,15 +495,8 @@ int main()
     shmctl(shmid,IPC_RMID,NULL); 
     return 0; 
 }
-Note: Execute the two programs simultaneously
-OUTPUT:
-Writer side process:
-Write data		: cmrtchyderabad	
-Data written in memory	: cmrtchyderabad
-Reader side Process:
-	Data read from memory	: cmrtchyderabad
   ......................................
-  //paging
+//paging
 #include<stdio.h>
 #include<conio.h>
 main()
